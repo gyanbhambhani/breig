@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --berkeley-blue: #003262;
+  --berkeley-gold: #FDB515;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-tertiary: #718096;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: var(--font-playfair), serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-berkeley {
+    background: linear-gradient(135deg, #003262 0%, #004F94 50%, #003262 100%);
+    background-size: 200% 200%;
+  }
+  
+  .gradient-gold {
+    background: linear-gradient(135deg, #FDB515 0%, #FFC72C 100%);
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 1s ease-out;
+  }
+  
+  .text-elegant-primary {
+    color: #1a1a1a;
+  }
+  
+  .text-elegant-secondary {
+    color: #4a5568;
+  }
+  
+  .text-elegant-tertiary {
+    color: #718096;
+  }
+  
+  .shadow-elegant {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .shadow-elegant-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shadow-elegant-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Elegant selection */
+::selection {
+  background-color: #FDB515;
+  color: #003262;
+}
+
+::-moz-selection {
+  background-color: #FDB515;
+  color: #003262;
+}
+
