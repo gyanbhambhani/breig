@@ -4,7 +4,7 @@ import { Linkedin, Instagram } from "lucide-react"
 const team = [
   {
     name: "Tommy Italia",
-    role: "Co-President",
+    role: "Founder & Partner",
     image: "/images/tommy-headshot.jpg",
     linkedin: "https://www.linkedin.com/in/tommyitalia/",
     instagram: "https://www.instagram.com/tommy.italia/",
@@ -39,7 +39,7 @@ const team = [
     grade: "Junior",
     major: "Business Administration (Haas GMP) & Data Science",
     hobbies: "Gearhead, Traveling, MMA",
-    experience: "Youngest realtor in the Bay Area, serial founder, and builder of AI infrastructure for real estate.",
+    experience: "Youngest Realtor in the Bay Area, Serial Founder, AI infrastructure.",
   },
   {
     name: "Sean Madden",
@@ -124,7 +124,7 @@ const team = [
   },
   {
     name: "Andy Yuan",
-    role: "Director of Communication",
+    role: "Director of General Membership",
     image: "/images/andy-headshot.jpg", // Updated to use Andy Yuan's professional headshot
     linkedin: "https://www.linkedin.com/in/xiaodi-yuan-26a681282/",
     instagram: "https://www.instagram.com/ssilenc33/",
