@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 const navigation = [
-  { name: "About", href: "#about" },
-  { name: "Programs", href: "#programs" },
+  { name: "About", href: "/#about" },
+  { name: "Programs", href: "/#programs" },
   { name: "Team", href: "/team" },
-  { name: "Recruitment", href: "#events" },
+  { name: "Recruitment", href: "/#events" },
 ]
 
 export function Header() {
