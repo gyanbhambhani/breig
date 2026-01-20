@@ -102,7 +102,7 @@ const team = [
     image: "/images/jw-headshot.jpg",
     linkedin: "https://www.linkedin.com/in/jw-keating",
     instagram: "https://www.instagram.com/jwkeating8/",
-    coffeeChat: "",
+    coffeeChat: "https://calendly.com/jwkeating-berkeley/new-meeting?month=2026-01",
     hometown: "Sacramento, CA",
     grade: "Junior",
     major: "Economics",
