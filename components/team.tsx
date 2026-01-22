@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Linkedin, Instagram } from "lucide-react"
 
@@ -165,6 +168,20 @@ const team = [
 ]
 
 export function Team() {
+  const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set())
+
+  const toggleFlip = (role: string) => {
+    setFlippedCards((prev) => {
+      const newSet = new Set(prev)
+      if (newSet.has(role)) {
+        newSet.delete(role)
+      } else {
+        newSet.add(role)
+      }
+      return newSet
+    })
+  }
+
   return (
     <section id="team" className="py-24 lg:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -179,98 +196,111 @@ export function Team() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member) => (
-            <div key={member.role} className="group h-full" style={{ perspective: "1000px" }}>
+          {team.map((member) => {
+            const isFlipped = flippedCards.has(member.role)
+            return (
               <div
-                className="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)]"
-                style={{ transformStyle: "preserve-3d" }}
+                key={member.role}
+                className="group h-full cursor-pointer"
+                style={{ perspective: "1000px" }}
+                onClick={() => toggleFlip(member.role)}
               >
-                <div className="w-full h-full" style={{ backfaceVisibility: "hidden" }}>
-                  <Card className="bg-card border-border overflow-hidden h-full">
-                    <div className="aspect-square relative overflow-hidden">
-                      <img
-                        src={member.image || "/placeholder.svg"}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <CardContent className="p-6 text-center">
-                      <h3 className="text-2xl font-bold text-foreground mb-2">{member.name}</h3>
-                      <p className="text-sm text-muted-foreground">{member.role}</p>
-                    </CardContent>
-                  </Card>
-                </div>
                 <div
-                  className="absolute inset-0 w-full h-full"
-                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                  className={`relative w-full h-full transition-transform duration-700 lg:group-hover:transform-[rotateY(180deg)] ${
+                    isFlipped ? "transform-[rotateY(180deg)]" : ""
+                  }`}
+                  style={{ transformStyle: "preserve-3d" }}
                 >
-                  <Card className="bg-card border-border h-full">
-                    <CardContent className="p-5 h-full flex flex-col">
-                      <div className="flex items-center justify-center gap-4 mb-4">
-                        <a
-                          href={member.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-                        >
-                          <Linkedin className="w-7 h-7" />
-                        </a>
-                        <a
-                          href={member.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-                        >
-                          <Instagram className="w-7 h-7" />
-                        </a>
+                  <div className="w-full h-full" style={{ backfaceVisibility: "hidden" }}>
+                    <Card className="bg-card border-border overflow-hidden h-full">
+                      <div className="aspect-square relative overflow-hidden">
+                        <img
+                          src={member.image || "/placeholder.svg"}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div className="flex-1 space-y-3 text-left text-sm">
-                        <div>
-                          <span className="font-semibold text-foreground">Hometown: </span>
-                          <span className="text-muted-foreground">{member.hometown}</span>
-                        </div>
-                        <div>
-                          <span className="font-semibold text-foreground">Grade: </span>
-                          <span className="text-muted-foreground">{member.grade}</span>
-                        </div>
-                        <div>
-                          <span className="font-semibold text-foreground">Major: </span>
-                          <span className="text-muted-foreground">{member.major}</span>
-                        </div>
-                        <div>
-                          <span className="font-semibold text-foreground">Interests: </span>
-                          <span className="text-muted-foreground">{member.hobbies}</span>
-                        </div>
-                        <div className="pt-1">
-                          <span className="font-semibold text-foreground">Professional Experience: </span>
-                          <span className="text-muted-foreground">{member.experience}</span>
-                        </div>
-                      </div>
-                      <div className="mt-4 pt-3 border-t border-border">
-                        {member.coffeeChat ? (
+                      <CardContent className="p-6 text-center">
+                        <h3 className="text-2xl font-bold text-foreground mb-2">{member.name}</h3>
+                        <p className="text-sm text-muted-foreground">{member.role}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div
+                    className="absolute inset-0 w-full h-full"
+                    style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                  >
+                    <Card className="bg-card border-border h-full">
+                      <CardContent className="p-5 h-full flex flex-col">
+                        <div className="flex items-center justify-center gap-4 mb-4">
                           <a
-                            href={member.coffeeChat}
+                            href={member.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block w-full py-2 px-4 text-center text-sm font-semibold text-accent border-2 border-accent bg-background hover:bg-accent hover:text-background transition-colors rounded-md"
+                            className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                            onClick={(e) => e.stopPropagation()}
                           >
-                            Coffee Chat
+                            <Linkedin className="w-7 h-7" />
                           </a>
-                        ) : (
-                          <button
-                            disabled
-                            className="block w-full py-2 px-4 text-center text-sm font-semibold text-accent/50 border-2 border-accent/30 bg-background/50 cursor-not-allowed rounded-md"
+                          <a
+                            href={member.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                            onClick={(e) => e.stopPropagation()}
                           >
-                            Coffee Chat
-                          </button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
+                            <Instagram className="w-7 h-7" />
+                          </a>
+                        </div>
+                        <div className="flex-1 space-y-3 text-left text-sm">
+                          <div>
+                            <span className="font-semibold text-foreground">Hometown: </span>
+                            <span className="text-muted-foreground">{member.hometown}</span>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-foreground">Grade: </span>
+                            <span className="text-muted-foreground">{member.grade}</span>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-foreground">Major: </span>
+                            <span className="text-muted-foreground">{member.major}</span>
+                          </div>
+                          <div>
+                            <span className="font-semibold text-foreground">Interests: </span>
+                            <span className="text-muted-foreground">{member.hobbies}</span>
+                          </div>
+                          <div className="pt-1">
+                            <span className="font-semibold text-foreground">Professional Experience: </span>
+                            <span className="text-muted-foreground">{member.experience}</span>
+                          </div>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-border">
+                          {member.coffeeChat ? (
+                            <a
+                              href={member.coffeeChat}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block w-full py-2 px-4 text-center text-sm font-semibold text-accent border-2 border-accent bg-background hover:bg-accent hover:text-background transition-colors rounded-md"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              Coffee Chat
+                            </a>
+                          ) : (
+                            <button
+                              disabled
+                              className="block w-full py-2 px-4 text-center text-sm font-semibold text-accent/50 border-2 border-accent/30 bg-background/50 cursor-not-allowed rounded-md"
+                            >
+                              Coffee Chat
+                            </button>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
