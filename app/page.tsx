@@ -18,8 +18,8 @@ export default function Home() {
       <Header />
       <Hero />
       <About />
-      <Programs />
       <Events />
+      <Programs />
       <Footer />
     </main>
   )

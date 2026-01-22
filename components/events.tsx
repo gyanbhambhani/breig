@@ -1,131 +1,82 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 
-const events = [
+const timelineEvents = [
   {
-    title: "Application and Coffee Chats Open",
-    date: "January 20, 2026",
-    time: "",
-    location: "",
-    type: "Recruitment",
-  },
-  {
+    number: "I",
+    date: "JANUARY 27",
     title: "Infosession #1",
-    date: "January 21, 2026",
-    time: "5:30 PM - 7:00 PM",
-    location: "Zoom",
-    type: "Info Session",
+    details: "5:30 PM - 7 PM via Zoom",
+    color: "gold",
   },
   {
-    title: "Women in Real Estate",
-    date: "January 22, 2026",
-    time: "TBD",
-    location: "The Standard at Berkeley",
-    type: "Event",
+    number: "II",
+    date: "JANUARY 28",
+    title: "Women in Real Estate Panel",
+    details: "@ The Standard Berkeley",
+    color: "navy",
   },
   {
+    number: "III",
+    date: "JANUARY 29",
     title: "Infosession #2",
-    date: "January 23, 2026",
-    time: "5:30 PM - 7:00 PM",
-    location: "Zoom",
-    type: "Info Session",
+    details: "5:30 PM - 7 PM via Zoom",
+    color: "gold",
   },
   {
-    title: "Application and Coffee Chats Close",
-    date: "January 27, 2026",
-    time: "All Applications Due at 11:59pm",
-    location: "",
-    type: "Deadline",
+    number: "IV",
+    date: "JANUARY 31",
+    title: "Applications Due",
+    details: "All Applications Close at 11:59 PM",
+    color: "navy",
   },
 ]
 
 export function Events() {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [isPaused, setIsPaused] = useState(false)
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current
-    if (!scrollContainer) return
-
-    let animationId: number
-    const scrollSpeed = 1
-
-    const scroll = () => {
-      if (!isPaused && scrollContainer) {
-        scrollContainer.scrollLeft += scrollSpeed
-
-        // Reset to beginning when reaching the end for infinite loop
-        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-          scrollContainer.scrollLeft = 0
-        }
-      }
-      animationId = requestAnimationFrame(scroll)
-    }
-
-    animationId = requestAnimationFrame(scroll)
-
-    return () => cancelAnimationFrame(animationId)
-  }, [isPaused])
-
   return (
-    <section id="recruitment" className="py-24 lg:py-32 bg-muted">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.15em] text-accent mb-4">Recruitment</p>
-            <h2 className="font-serif text-4xl lg:text-5xl font-medium tracking-tight text-foreground text-balance">
-              Join Us This Semester
-            </h2>
-          </div>
+    <section id="recruitment" className="py-24 lg:py-32 bg-[#e8e4da]">
+      <div className="mx-auto max-w-4xl px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <p className="text-sm font-medium uppercase tracking-[0.15em] text-accent mb-4">Recruitment</p>
+          <h2 className="font-serif text-4xl lg:text-5xl font-medium tracking-tight text-foreground mb-6 text-balance">
+            Join Us This Semester
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Connect with our team through coffee chats and info sessions
+          </p>
         </div>
 
-        <div
-          ref={scrollRef}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          className="overflow-x-auto pb-4 -mx-6 px-6 lg:-mx-8 lg:px-8 scrollbar-hide"
-        >
-          <div className="flex gap-6 min-w-max">
-            {events.map((event) => (
-              <Card
-                key={event.title}
-                className="bg-card border-border hover:border-primary/30 transition-colors w-80 flex-shrink-0"
+        <div className="relative space-y-12 lg:space-y-16">
+          {timelineEvents.map((event, index) => (
+            <div key={event.number} className="flex flex-col items-center text-center">
+              {/* Circle with Number */}
+              <div
+                className={`w-16 h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center text-white font-serif text-2xl lg:text-3xl mb-6 ${
+                  event.color === "gold" ? "bg-[#8b7e3d]" : "bg-[#1e3a5f]"
+                }`}
               >
-                <CardContent className="p-8">
-                  <span className="inline-block text-xs font-medium uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full mb-4">
-                    {event.type}
-                  </span>
-                  <h3 className="text-xl font-semibold text-foreground mb-4">{event.title}</h3>
-                  <div className="space-y-3 text-muted-foreground">
-                    <div className="flex items-center gap-3">
-                      <Calendar className="w-4 h-4 text-primary" />
-                      <span className="text-sm">{event.date}</span>
-                    </div>
-                    {event.time && (
-                      <div className="flex items-center gap-3">
-                        <Clock className="w-4 h-4 text-primary" />
-                        <span className="text-sm">{event.time}</span>
-                      </div>
-                    )}
-                    {event.location && (
-                      <div className="flex items-center gap-3">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <span className="text-sm">{event.location}</span>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                {event.number}
+              </div>
+
+              {/* Event Details */}
+              <div className="space-y-2">
+                <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground">{event.date}</h3>
+                <p className="text-xl lg:text-2xl font-medium text-foreground">{event.title}</p>
+                <p className="text-base lg:text-lg text-muted-foreground">{event.details}</p>
+              </div>
+
+              {/* Connector Line (except for last item) */}
+              {index < timelineEvents.length - 1 && (
+                <div className="w-0.5 h-12 lg:h-16 bg-border mt-8" />
+              )}
+            </div>
+          ))}
         </div>
 
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-16">
           <Link href="https://forms.gle/6sHX57BZFVs7Dwqt8" target="_blank" rel="noopener noreferrer">
             <Button
               variant="outline"
