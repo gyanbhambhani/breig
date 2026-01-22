@@ -16,7 +16,7 @@ const timelineEvents = [
     number: "II",
     date: "JANUARY 28",
     title: "Women in Real Estate Panel",
-    details: "@ The Standard Berkeley",
+    details: "7 PM @ The Standard Berkeley, 2580 Bancroft Way",
     color: "navy",
   },
   {

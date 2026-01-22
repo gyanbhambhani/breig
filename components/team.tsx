@@ -154,7 +154,7 @@ const team = [
   },
   {
     name: "Savannah Westlake",
-    role: "Director of Media",
+    role: "VP of Merchandise",
     image: "/images/savannah-headshot.jpg", // Updated to use Savannah's actual headshot
     linkedin: "https://www.linkedin.com/in/savannah-westlake-0794993a4/",
     instagram: "https://www.instagram.com/savannah.w._/",
