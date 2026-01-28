@@ -11,10 +11,11 @@ const timelineEvents = [
     title: "Infosession #1",
     details: "5:30 PM - 7 PM via Zoom",
     color: "gold",
+    link: "https://berkeley.zoom.us/j/98759213883?pwd=MuwktFf7LQAe3nrAZPJ5i2Gkyxxh8R.1",
   },
   {
     number: "II",
-    date: "JANUARY 28",
+    date: "FEBRUARY 4",
     title: "Women in Real Estate Panel",
     details: "7 PM @ The Standard Berkeley, 2580 Bancroft Way",
     color: "navy",
@@ -25,6 +26,7 @@ const timelineEvents = [
     title: "Infosession #2",
     details: "5:30 PM - 7 PM via Zoom",
     color: "gold",
+    link: "https://berkeley.zoom.us/j/98759213883?pwd=MuwktFf7LQAe3nrAZPJ5i2Gkyxxh8R.1",
   },
   {
     number: "IV",
@@ -66,6 +68,18 @@ export function Events() {
                 <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground">{event.date}</h3>
                 <p className="text-xl lg:text-2xl font-medium text-foreground">{event.title}</p>
                 <p className="text-base lg:text-lg text-muted-foreground">{event.details}</p>
+                {event.link && (
+                  <div className="pt-2">
+                    <Link href={event.link} target="_blank" rel="noopener noreferrer">
+                      <Button
+                        size="sm"
+                        className="bg-accent text-background hover:bg-accent/90"
+                      >
+                        Join Zoom
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Connector Line (except for last item) */}
