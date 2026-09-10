@@ -7,32 +7,32 @@ import { ArrowRight } from "lucide-react"
 const timelineEvents = [
   {
     number: "I",
-    date: "JANUARY 27",
-    title: "Infosession #1",
-    details: "5:30 PM - 7 PM via Zoom",
+    date: "SEPTEMBER 09",
+    title: "Infosession #1 + Applications Open",
+    details: "8:00-9:00 PM via Zoom",
     color: "gold",
     link: "https://berkeley.zoom.us/j/98759213883?pwd=MuwktFf7LQAe3nrAZPJ5i2Gkyxxh8R.1",
   },
   {
     number: "II",
-    date: "FEBRUARY 4",
-    title: "Women in Real Estate Panel",
-    details: "7 PM @ The Standard Berkeley, 2580 Bancroft Way",
+    date: "SEPTEMBER 10",
+    title: "Meet the Members",
+    details: "6:00-7:00 PM @The Standard",
     color: "navy",
   },
   {
     number: "III",
-    date: "JANUARY 29",
+    date: "SEPTEMBER 11",
     title: "Infosession #2",
-    details: "5:30 PM - 7 PM via Zoom",
+    details: "2:00-3:00 PM via Zoom",
     color: "gold",
     link: "https://berkeley.zoom.us/j/98759213883?pwd=MuwktFf7LQAe3nrAZPJ5i2Gkyxxh8R.1",
   },
   {
     number: "IV",
-    date: "JANUARY 31",
-    title: "Applications Due",
-    details: "All Applications Close at 11:59 PM",
+    date: "SEPTEMBER 13",
+    title: "Applications Close",
+    details: "All applications close",
     color: "navy",
   },
 ]
@@ -42,9 +42,11 @@ export function Events() {
     <section id="recruitment" className="py-24 lg:py-32 bg-[#e8e4da]">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-sm font-medium uppercase tracking-[0.15em] text-accent mb-4">Recruitment</p>
+          <p className="text-sm font-medium uppercase tracking-[0.15em] text-accent mb-4">
+            Recruitment Timeline
+          </p>
           <h2 className="font-serif text-4xl lg:text-5xl font-medium tracking-tight text-foreground mb-6 text-balance">
-            Join Us This Semester
+            Fall 2026
           </h2>
           <p className="text-lg text-muted-foreground">
             Connect with our team through coffee chats and info sessions
@@ -91,7 +93,7 @@ export function Events() {
         </div>
 
         <div className="flex justify-center mt-16">
-          <Link href="https://forms.gle/6sHX57BZFVs7Dwqt8" target="_blank" rel="noopener noreferrer">
+          <Link href="https://docs.google.com/forms/d/e/1FAIpQLSe44JhNZe0vS567WNu8vrJgCHatd4CN1EaZFEMDHwtcSx6YRw/viewform" target="_blank" rel="noopener noreferrer">
             <Button
               variant="outline"
               size="lg"

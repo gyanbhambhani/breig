@@ -61,7 +61,7 @@ export function Header() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="https://forms.gle/6sHX57BZFVs7Dwqt8" target="_blank" rel="noopener noreferrer">
+            <Link href="https://docs.google.com/forms/d/e/1FAIpQLSe44JhNZe0vS567WNu8vrJgCHatd4CN1EaZFEMDHwtcSx6YRw/viewform" target="_blank" rel="noopener noreferrer">
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Apply Now</Button>
             </Link>
           </div>
@@ -116,7 +116,7 @@ export function Header() {
               {/* Apply Now Button - Centered */}
               <div className="w-full max-w-sm">
                 <Link 
-                  href="https://forms.gle/6sHX57BZFVs7Dwqt8" 
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSe44JhNZe0vS567WNu8vrJgCHatd4CN1EaZFEMDHwtcSx6YRw/viewform" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={closeMobileMenu}

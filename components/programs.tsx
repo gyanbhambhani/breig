@@ -37,7 +37,7 @@ export function Programs() {
                 opportunities, BREIG provides the knowledge, resources, and network to help you get started.
               </p>
               <Link
-                href="https://forms.gle/6sHX57BZFVs7Dwqt8"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe44JhNZe0vS567WNu8vrJgCHatd4CN1EaZFEMDHwtcSx6YRw/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
@@ -70,7 +70,7 @@ export function Programs() {
                 investment potential from the finance side of real estate.
               </p>
               <Link
-                href="https://forms.gle/6sHX57BZFVs7Dwqt8"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe44JhNZe0vS567WNu8vrJgCHatd4CN1EaZFEMDHwtcSx6YRw/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
