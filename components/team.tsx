@@ -4,6 +4,13 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Linkedin, Instagram } from "lucide-react"
 
+type Experience = {
+  firm: string
+  summary: string
+  logo?: string
+  wide?: boolean
+}
+
 type TeamMember = {
   name: string
   role: string
@@ -16,6 +23,7 @@ type TeamMember = {
   major: string
   hobbies?: string
   experience?: string
+  roles?: Experience[]
 }
 
 const executiveBoard: TeamMember[] = [
@@ -30,7 +38,15 @@ const executiveBoard: TeamMember[] = [
     grade: "Class of '27",
     major: "Business Administration",
     hobbies: "Gearhead, Traveling, MMA",
-    experience: "Youngest Realtor in the Bay Area, Serial Founder, AI infrastructure.",
+    roles: [
+      {
+        firm: "Berkshire Hathaway",
+        summary:
+          "Youngest Realtor in the Bay Area. Serial founder, AI infrastructure.",
+        logo: "/images/logos/berkshire-hathaway.svg",
+        wide: true,
+      },
+    ],
   },
   {
     name: "Abbas Benhamida",
@@ -43,7 +59,14 @@ const executiveBoard: TeamMember[] = [
     grade: "Class of '29",
     major: "Data Science + Applied Math",
     hobbies: "Manual Cars, Premier League Soccer, Spanish",
-    experience: "Investor-focused service contracts and transaction support as a real estate intern at Compass.",
+    roles: [
+      {
+        firm: "Compass",
+        summary:
+          "Real estate intern. Investor-focused service contracts and transaction support.",
+        logo: "/images/logos/compass.svg",
+      },
+    ],
   },
   {
     name: "JW Keating",
@@ -56,7 +79,14 @@ const executiveBoard: TeamMember[] = [
     grade: "Class of '27",
     major: "Economics",
     hobbies: "Skiing, Golf, Food",
-    experience: "Private equity real estate investment research and market analysis at UBS.",
+    roles: [
+      {
+        firm: "UBS",
+        summary:
+          "Private equity real estate. Investment research and market analysis.",
+        logo: "/images/logos/ubs.svg",
+      },
+    ],
   },
   {
     name: "Shyla Gupta",
@@ -77,8 +107,14 @@ const executiveBoard: TeamMember[] = [
     grade: "Class of '28",
     major: "Economics",
     hobbies: "Golfing, Basketball, Surfing",
-    experience:
-      "Commercial real estate investment, loan underwriting, and property management support at Holmes Burrell Real Estate.",
+    roles: [
+      {
+        firm: "Holmes Burrell",
+        summary:
+          "Commercial investment, loan underwriting, and property management.",
+        logo: "/images/logos/holmes-burrell.svg",
+      },
+    ],
   },
   {
     name: "Nico Harris",
@@ -91,7 +127,14 @@ const executiveBoard: TeamMember[] = [
     grade: "Sophomore",
     major: "Economics",
     hobbies: "Golfing, Backpacking, Watching Sports",
-    experience: "Wealth management and residential real estate investment strategy development at Osaic.",
+    roles: [
+      {
+        firm: "Osaic",
+        summary:
+          "Wealth management and residential real estate investment strategy.",
+        logo: "/images/logos/osaic.png",
+      },
+    ],
   },
 ]
 
@@ -144,6 +187,29 @@ const alumniPartners: TeamMember[] = [
   },
 ]
 
+function FirmMark({
+  firm,
+  logo,
+  wide,
+}: {
+  firm: string
+  logo?: string
+  wide?: boolean
+}) {
+  if (!logo) return null
+  return (
+    <img
+      src={logo}
+      alt={`${firm} logo`}
+      className={
+        wide
+          ? "h-auto w-full max-w-[14rem] object-contain"
+          : "h-6 w-auto max-w-[10rem] object-contain object-left"
+      }
+    />
+  )
+}
+
 function MemberCard({
   member,
   isFlipped,
@@ -177,6 +243,18 @@ function MemberCard({
             <CardContent className="p-6 text-center">
               <h3 className="text-2xl font-bold text-foreground mb-2">{member.name}</h3>
               <p className="text-sm text-muted-foreground">{member.role}</p>
+              {member.roles && member.roles.length > 0 && (
+                <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 border-t border-border pt-4">
+                  {member.roles.map((role) => (
+                    <FirmMark
+                      key={role.firm}
+                      firm={role.firm}
+                      logo={role.logo}
+                      wide={role.wide}
+                    />
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -185,7 +263,7 @@ function MemberCard({
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
           <Card className="bg-card border-border h-full">
-            <CardContent className="p-5 h-full flex flex-col">
+            <CardContent className="p-5 h-full flex flex-col overflow-y-auto">
               {(member.linkedin || member.instagram) && (
                 <div className="flex items-center justify-center gap-4 mb-4">
                   {member.linkedin && (
@@ -229,6 +307,33 @@ function MemberCard({
                   <div>
                     <span className="font-semibold text-foreground">Interests: </span>
                     <span className="text-muted-foreground">{member.hobbies}</span>
+                  </div>
+                )}
+                {member.roles && member.roles.length > 0 && (
+                  <div className="border-t border-border pt-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground">
+                      Experience
+                    </p>
+                    {member.roles.map((role) => (
+                      <div key={role.firm} className="mt-3">
+                        {role.logo ? (
+                          <img
+                            src={role.logo}
+                            alt={`${role.firm} logo`}
+                            className={
+                              role.wide
+                                ? "h-auto w-full max-w-[12rem] object-contain object-left"
+                                : "h-4 w-auto max-w-[8rem] object-contain object-left"
+                            }
+                          />
+                        ) : (
+                          <p className="font-medium text-foreground">{role.firm}</p>
+                        )}
+                        <p className="mt-1.5 leading-snug text-muted-foreground">
+                          {role.summary}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 )}
                 {member.experience && (

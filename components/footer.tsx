@@ -11,18 +11,21 @@ export function Footer() {
             <span className="text-sm text-muted-foreground">Berkeley Real Estate Investment Group</span>
           </div>
 
-          <div className="flex items-center gap-8">
-            <Link href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <Link href="/#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               About
             </Link>
-            <Link href="#programs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/#programs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Programs
             </Link>
-            <Link href="#events" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Events
+            <Link href="/team" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Team
             </Link>
-            <Link href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Contact
+            <Link href="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Projects
+            </Link>
+            <Link href="/market" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Market
             </Link>
           </div>
         </div>

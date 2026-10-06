@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
@@ -10,11 +11,14 @@ const navigation = [
   { name: "About", href: "/#about" },
   { name: "Programs", href: "/#programs" },
   { name: "Team", href: "/team" },
+  { name: "Projects", href: "/projects" },
+  { name: "Market", href: "/market" },
   { name: "Join Us", href: "/#recruitment" },
 ]
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
@@ -49,16 +53,23 @@ export function Header() {
               <Menu className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-10">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {item.name}
-              </Link>
-            ))}
+          <div className="hidden lg:flex lg:gap-x-7">
+            {navigation.map((item) => {
+              const active = item.href === pathname
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`text-sm font-medium tracking-wide transition-colors hover:text-foreground ${
+                    active
+                      ? "text-foreground underline decoration-accent decoration-2 underline-offset-8"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            })}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link href="https://docs.google.com/forms/d/e/1FAIpQLSe44JhNZe0vS567WNu8vrJgCHatd4CN1EaZFEMDHwtcSx6YRw/viewform" target="_blank" rel="noopener noreferrer">
